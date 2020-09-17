@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 import AppBar from '@material-ui/core/AppBar'
 import Button from '@material-ui/core/Button'
 import Toolbar from '@material-ui/core/Toolbar'
+import Slide from '@material-ui/core/Slide'
 
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -19,58 +20,75 @@ const useStyles = makeStyles(() => ({
   button: {
     textTransform: 'none',
     fontFamily: 'Rokkit',
-    borderRadius: 0
+    borderRadius: 0,
+  },
+  sidebar: {
+    width: '15%',
+    backgroundColor: 'rgba(0, 0, 0, 0)',
+    boxShadow: 'none',
+    marginTop: 30
+  },
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
   }
 }))
 
+const AppbarButtons = ({ classes }) => {
+  return (
+    <>
+      <Button className={classes.button}>
+        about me
+      </Button>
+      <Button className={classes.button}>
+        education
+      </Button>
+      <Button className={classes.button}>
+        technical skills
+      </Button>
+      <Button className={classes.button}>
+        research
+      </Button>
+      <Button className={classes.button}>
+        software projects
+      </Button>
+      <Button className={classes.button}>
+        experience
+      </Button>
+    </>
+  )
+}
+
 export default function Header() {
   const classes = useStyles()
+  const [trigger, set_trigger] = useState(false)
+
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 150) {
+        set_trigger(true)
+      } else {
+        set_trigger(false)
+      }
+    })
+  }, [])
 
   return (
     <div>
-      <AppBar className={classes.appbar}>
-        <Toolbar className={classes.toolbar}>
-          <Button 
-            className={classes.button}
-            onClick={() => window.scrollTo(0, 0)}
-          >
-            home
-          </Button>
-          <Button 
-            className={classes.button}
-            onClick={() => window.scrollTo(0, 1045)}            
-            >
-            about me
-          </Button>
-          <Button 
-            className={classes.button}
-            onClick={() => window.scrollTo(0, 2090)}
-          >
-            education
-          </Button>
-          <Button 
-            className={classes.button}
-            onClick={() => window.scrollTo(0, 3135)}  
-          >
-            technical skills
-          </Button>
-          <Button 
-            className={classes.button}
-            onClick={() => window.scrollTo(0, 4180)}
-          >
-            research
-          </Button>
-          <Button className={classes.button}>
-            software projects
-          </Button>
-          <Button className={classes.button}>
-            experience
-          </Button>
-          <Button className={classes.button}>
-            contact
-          </Button>
-        </Toolbar>
-      </AppBar>
+      <Slide direction='down' in={!trigger}>
+        <AppBar className={classes.appbar}>
+          <Toolbar className={classes.toolbar}>
+            <AppbarButtons classes={classes} />
+          </Toolbar>
+        </AppBar>
+      </Slide>
+      <Slide direction='left' in={trigger} timeout={500}>
+        <AppBar className={classes.sidebar}>
+          <div className={classes.container}>
+            <AppbarButtons classes={classes} />
+          </div>
+        </AppBar>
+      </Slide>
     </div>
   )
 }

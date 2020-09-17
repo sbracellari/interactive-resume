@@ -7,6 +7,7 @@ import { makeStyles } from '@material-ui/core/styles'
 const useStyles = makeStyles(() => ({
   container: {
     textAlign: 'center',
+    marginTop: 50
   },
   title: {
     fontSize: 35,
@@ -18,30 +19,21 @@ const useStyles = makeStyles(() => ({
     fontSize: 16,
     fontFamily: 'Rokkit',
     marginBottom: 50
-  },
-  content: {
-    display: 'flex',
-    flexDirection: 'column',
   }
 }))
 
-export default function Home() {
+export default function ThankYou() {
   const classes = useStyles()
 
   return (
       <div className={classes.container}>
         <Fade
           in={true} 
-          timeout={2000} 
+          timeout={5000} 
         >
-          <div className={classes.content}>
-            <Typography className={classes.title}>
-              Hi there!
-            </Typography>
+          <div>
             <Typography className={classes.subheader}>
-              My name is Samantha Bracellari. 
-              Nice to see you here!
-              Keep scrolling to learn more about me!
+              Thank you for visiting my site! I hope you enjoyed the read!
             </Typography>
           </div>
         </Fade>
