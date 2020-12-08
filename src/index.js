@@ -4,7 +4,4 @@ import App from './App'
 
 const project_name = 'interactive-resume'
 
-ReactDOM.render(
-  <App />,
-  document.getElementById(project_name)
-)
+ReactDOM.render(<App />, document.getElementById(project_name))

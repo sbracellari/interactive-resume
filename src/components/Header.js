@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 
 import AppBar from '@material-ui/core/AppBar'
 import Button from '@material-ui/core/Button'
-import Toolbar from '@material-ui/core/Toolbar'
 import Slide from '@material-ui/core/Slide'
+import Toolbar from '@material-ui/core/Toolbar'
 
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -15,7 +15,7 @@ const useStyles = makeStyles(() => ({
   toolbar: {
     display: 'flex',
     justifyContent: 'space-evenly',
-    padding: '0px 50px'
+    padding: '0px 50px',
   },
   button: {
     textTransform: 'none',
@@ -26,33 +26,51 @@ const useStyles = makeStyles(() => ({
     width: '15%',
     backgroundColor: 'rgba(0, 0, 0, 0)',
     boxShadow: 'none',
-    marginTop: 30
+    marginTop: 30,
   },
   container: {
     display: 'flex',
     flexDirection: 'column',
-  }
+  },
 }))
 
 const AppbarButtons = ({ classes }) => {
   return (
     <>
-      <Button className={classes.button}>
+      <Button
+        className={classes.button}
+        onClick={() => document.getElementById('about-me').scrollIntoView()}
+      >
         about me
       </Button>
-      <Button className={classes.button}>
+      <Button
+        className={classes.button}
+        onClick={() => document.getElementById('education').scrollIntoView()}
+      >
         education
       </Button>
-      <Button className={classes.button}>
+      <Button
+        className={classes.button}
+        onClick={() => document.getElementById('technical-skills').scrollIntoView()}
+      >
         technical skills
       </Button>
-      <Button className={classes.button}>
+      <Button
+        className={classes.button}
+        onClick={() => document.getElementById('research').scrollIntoView()}
+      >
         research
       </Button>
-      <Button className={classes.button}>
+      <Button
+        className={classes.button}
+        onClick={() => document.getElementById('software').scrollIntoView()}
+      >
         software projects
       </Button>
-      <Button className={classes.button}>
+      <Button
+        className={classes.button}
+        onClick={() => document.getElementById('experience').scrollIntoView()}
+      >
         experience
       </Button>
     </>
